@@ -30,7 +30,7 @@ export function TopUrl() {
     const fetchListUrl = async () => {
       try {
         const response = await axios.get(`${baseUrl}/api/listUrl`);
-        console.log(response.data);
+        // console.log(response.data);
 
         setListUrl(response.data); // Limit to top 5
       } catch (error) {
