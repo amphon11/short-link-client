@@ -16,6 +16,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { CopyIcon } from "@radix-ui/react-icons";
 import { LinearProgressWithLabel } from "../components/linearProgressWithLabel";
 
+const baseUrl = import.meta.env.VITE_BASE_URL;
 const urlSchema = z.object({
   originalUrl: z
     .string()
@@ -52,7 +53,7 @@ export function ShortLink() {
     }, 100); // ทุ
     try {
       try {
-        const isUrlAvailable = await axios.post("http://localhost:8000/api/check",{
+        const isUrlAvailable = await axios.post(`${baseUrl}/api/check`,{
           originalUrl: data.originalUrl,
         });
         if (isUrlAvailable.data.reachable) {
@@ -65,7 +66,7 @@ export function ShortLink() {
         setErrorData("URL not available Please try another URL")
       }
      
-      const response = await axios.post("http://localhost:8000/api/shorten", {
+      const response = await axios.post(`${baseUrl}/api/shorten`, {
         originalUrl: data.originalUrl,
       });
       clearInterval(interval); // หยุดการจำลอง

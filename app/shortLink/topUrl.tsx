@@ -29,7 +29,7 @@ export function TopUrl() {
   useEffect(() => {
     const fetchListUrl = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/listUrl");
+        const response = await axios.get(`${baseUrl}/listUrl`);
         setListUrl(response.data.slice(0, 5)); // Limit to top 5
       } catch (error) {
         console.error("Error fetching URLs:", error);

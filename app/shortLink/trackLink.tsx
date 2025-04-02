@@ -17,6 +17,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CopyIcon } from "@radix-ui/react-icons";
+const baseUrl = import.meta.env.VITE_BASE_URL;
 
 const urlSchema = z.object({
   shortURL: z
@@ -58,7 +59,7 @@ export function TrackLink() {
     }, 100); // ทุ
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/clicks/${slug}`
+        `${baseUrl}/api/clicks/${slug}`
       );
       // console.log("response track", response.data);
 
