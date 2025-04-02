@@ -88,7 +88,7 @@ export function TopUrl() {
                     </TableCell>
                     <TableCell className="font-mono text-gray-600">
                       <a
-                        href={`${baseUrl}/${data.shortCode}`}
+                        href={`${baseUrl}/api/${data.shortCode}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-blue-500 hover:text-blue-700 hover:underline"

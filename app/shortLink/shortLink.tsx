@@ -71,6 +71,8 @@ export function ShortLink() {
       const response = await axios.post(`${baseUrl}/api/shorten`, {
         originalUrl: data.originalUrl,
       });
+      console.log(response.data);
+      
       clearInterval(interval); // หยุดการจำลอง
       if (response.data.totalClick !== undefined) {
         setTotalClick(response.data.totalClick);
