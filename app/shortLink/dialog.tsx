@@ -8,15 +8,16 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../components/ui/dialog";
-import { Input } from "../components/ui/input";
-import { Label } from "../components/ui/label";
+
 import { TopUrl } from "./topUrl";
+import HistoryIcon from '@mui/icons-material/History';
+
 
 export function DialogDemo() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">History</Button>
+        <Button variant="outline"><HistoryIcon/></Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[800px] ">
         <DialogHeader>

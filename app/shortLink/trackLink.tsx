@@ -10,6 +10,7 @@ import {
 import { Input } from "../components/ui/input";
 import { LinearProgressWithLabel } from "../components/linearProgressWithLabel";
 import Box from "@mui/material/Box";
+import { DialogDemo } from "~/shortLink/dialog";
 
 import { useState } from "react";
 import axios from "axios";
@@ -17,11 +18,11 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CopyIcon } from "@radix-ui/react-icons";
+import { Link } from "react-router";
 const baseUrl = import.meta.env.VITE_BASE_URL;
 
 const urlSchema = z.object({
-  shortURL: z
-    .string().min(5)
+  shortURL: z.string().min(5),
 });
 
 export function TrackLink() {
@@ -54,9 +55,7 @@ export function TrackLink() {
       setProgress((prev) => (prev < 90 ? prev + 10 : prev)); // เพิ่มทีละ 10 จนถึง 90
     }, 100); // ทุ
     try {
-      const response = await axios.get(
-        `${baseUrl}/api/clicks/${slug}`
-      );
+      const response = await axios.get(`${baseUrl}/api/clicks/${slug}`);
       // console.log("response track", response.data);
 
       clearInterval(interval); // หยุดการจำลอง
@@ -74,7 +73,7 @@ export function TrackLink() {
     } catch (error) {
       // console.error("Error:", error);
       clearInterval(interval);
-        setError("Not found originalUrl ,Please try another Url");
+      setError("Not found originalUrl ,Please try another Url");
     } finally {
       setIsLoading(false);
     }
@@ -94,12 +93,10 @@ export function TrackLink() {
 
   return (
     <div className="container mx-auto">
-      <div className="flex justify-center items-center text-5xl p-5">
-        Track Cliks
-      </div>
-      <Card className="md:w-[450px] mx-auto">
+      <Card className="md:w-[600px] mx-auto">
         <CardHeader>
-          <CardTitle>Paste the short URL to be track</CardTitle>
+          <CardTitle className="text-3xl text-center">Track click.</CardTitle>
+          <CardDescription className="text-center">Paste the short URL to be track</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -175,6 +172,12 @@ export function TrackLink() {
               </div>
             )
           )}
+          <div className="flex justify-center space-x-2">
+            <Link to="/">
+              <Button>Shorten another URL</Button>
+            </Link>
+            <DialogDemo />
+          </div>
         </CardFooter>
       </Card>
     </div>

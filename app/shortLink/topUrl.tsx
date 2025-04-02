@@ -11,6 +11,7 @@ import {
   TableRow,
 } from "../components/ui/table";
 import { Card } from "../components/ui/card";
+import { Mosaic } from "react-loading-indicators";
 
 const baseUrl = import.meta.env.VITE_BASE_URL;
 
@@ -25,16 +26,19 @@ type UrlData = {
 
 export function TopUrl() {
   const [listUrl, setListUrl] = useState<UrlData[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchListUrl = async () => {
+      setIsLoading(true);
       try {
         const response = await axios.get(`${baseUrl}/api/listUrl`);
         // console.log(response.data);
-
         setListUrl(response.data); // Limit to top 5
       } catch (error) {
         console.error("Error fetching URLs:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchListUrl();
@@ -43,7 +47,16 @@ export function TopUrl() {
   return (
     <div className="container mx-auto">
       <Card className="max-w-4xl mx-auto shadow-none border-none">
-        {listUrl.length > 0 ? (
+        {isLoading ? (
+          <div className="flex justify-center items-center">
+            <Mosaic
+              color="#c5c6d7"
+              size="large"
+              text="loading..."
+              textColor="#253256"
+            />
+          </div>
+        ) : listUrl.length > 0 ? (
           <div className="max-h-[400px] overflow-y-auto border rounded-lg">
             <Table className="w-full">
               <TableHeader className="sticky top-0 bg-gray-50 z-10">
