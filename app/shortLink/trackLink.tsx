@@ -21,11 +21,7 @@ const baseUrl = import.meta.env.VITE_BASE_URL;
 
 const urlSchema = z.object({
   shortURL: z
-    .string()
-    .url("Please enter a valid URL") // กำหนดให้ต้องเป็น URL ที่ถูกต้อง
-    .refine((val) => val.startsWith("http"), {
-      message: "URL must start with http or https",
-    }),
+    .string().min(5)
 });
 
 export function TrackLink() {

@@ -17,6 +17,7 @@ import { CopyIcon } from "@radix-ui/react-icons";
 import { LinearProgressWithLabel } from "../components/linearProgressWithLabel";
 
 const baseUrl = import.meta.env.VITE_BASE_URL;
+
 const urlSchema = z.object({
   originalUrl: z
     .string()
@@ -46,6 +47,7 @@ export function ShortLink() {
     setIsLoading(true);
     setProgress(0); // รีเซ็ต progress
     setTotalClick(0);
+    setErrorData("")
 
     // จำลอง progress
     const interval = setInterval(() => {
