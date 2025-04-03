@@ -1,9 +1,9 @@
 # Short URL Application
 
 <div align="center">
-  ![image](https://github.com/user-attachments/assets/d0de4734-7c6d-426f-b322-6da31d5004bf)
+   <img src="https://res.cloudinary.com/dmqhlua4l/image/upload/v1743657289/dog_ww5kk7.jpg">
 </div>
-![image](https://github.com/user-attachments/assets/e17ba0ce-f0fa-409b-bc3d-d67233d8b9c8)
+
 
 
 ## 📌 Overview
