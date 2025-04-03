@@ -1,5 +1,8 @@
-# URL Shortener Application
+# Short URL Application
 
+<div align="center">
+  ![image](https://github.com/user-attachments/assets/d0de4734-7c6d-426f-b322-6da31d5004bf)
+</div>
 
 ## 📌 Overview
   - URL Shortener Application เป็นเครื่องมือสำหรับย่อ URL ที่พัฒนาด้วย TypeScript, Node.js, Express, และ Prisma ช่วยให้ผู้ใช้สามารถ:
@@ -36,83 +39,49 @@
 
 ก่อนติดตั้ง คุณต้องมีเครื่องมือและข้อมูลต่อไปนี้:
 
-- **Node.js**: v18 หรือสูงกว่า
-- **npm**: v9 หรือสูงกว่า
-- **PostgreSQL**: ฐานข้อมูลสำหรับเก็บข้อมูล URL, Click วันที่สร้าง
+- **React.js**: v19 หรือสูงกว่า
 - **Render Account**: ถ้าต้องการ deploy ออนไลน์
-
 
 ## 🔧 Installation (Local Development)
 
 ### 1️⃣ Clone Repository
 ```bash
-git clone https://github.com/your-username/short-link.git
-cd url-shortener
+git clone https://github.com/amphon11/short-link.git
+cd short-link
 ```
 ### 2️⃣ Install Dependencies
 ```bash
 npm install
+# หรือถ้าใช้ yarn
+# yarn install
 ```
 ### 3️⃣ Setup Environment Variables
 ```bash
 DATABASE_URL="postgresql://<username>:<password>@<host>:<port>/<dbname>?schema=public"
-BASE_URL="your_server_domain"
-CLIENT_URL="your_client_domain"
-PORT=8080
+VITE_BASE_URL="your_server_domain" 
 ```
 📌 เปลี่ยนค่า <username>, <password>, <host>, <port>, <dbname> ตามฐานข้อมูลของคุณ
+
+API URL สามารถนำมาได้จาก [Short link server side](https://github.com/erisk405/ShortLink-Server) คือ http://localhost:8080
 
 ### 4️⃣ Setup Database
 ```bash
 npx prisma migrate dev --name init
 ```
-🔹 คำสั่งนี้จะสร้างตาราง ShortUrl ตาม schema ใน prisma/schema.prisma
 
 ### 5️⃣ Start the Application
 ```bash
 npm start
 ```
 
-🔹 แอปจะรันที่ http://localhost:8080
-## 🎯 API Endpoints
+## 🚀 Deployment
+รองรับการ deploy บนแพลตฟอร์มต่าง ๆ เช่น:
+  - Vercel: vercel deploy
+  - Netlify: netlify deploy
+  - Render: สามารถตั้งค่าใน package.json ให้รองรับ build บน Render
 
-Install the dependencies:
-
-✂️ Shorten URL
-```bash
-POST http://localhost:8080/shorten
-```
-Body:
-```bash
-{
-  "originalUrl": "https://example.com"
-}
-```
-🔄 Redirect
-```bash
-GET http://localhost:8080/<shortCode>
-```
-🌍 Location Stats
-```bash
-GET http://localhost:8080/location-stats?shortCode=<shortCode>
-```
-📜 URL History
-```bash
-GET http://localhost:8080/history
-```
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
+## 🔗 Links
+- **Client Repository:** [Short link client side](https://github.com/erisk405/ShortLink-Client)
+- **Server Repository:** [Short link server side](https://github.com/erisk405/ShortLink-Server)
 
 Built with ❤️ using React Router.
