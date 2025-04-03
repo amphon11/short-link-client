@@ -46,8 +46,8 @@ URL Shortener Application เป็นเครื่องมือสำหร
 
 ### 1️⃣ Clone Repository
 ```bash
-git clone https://github.com/amphon11/short-link.git
-cd short-link
+git clone https://github.com/amphon11/short-link-client.git
+cd short-link-client
 ```
 ### 2️⃣ Install Dependencies
 ```bash
