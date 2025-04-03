@@ -76,7 +76,7 @@ export function ShortLink() {
         console.error("clicks not found in response", response.data.totalClick);
       }
     } catch (error: any) {
-      console.error("Error:", error);
+      // console.error("Error:", error);
       setErrorData("URL not available. Please try another URL");
     } finally {
       setIsLoading(false);

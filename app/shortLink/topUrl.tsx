@@ -73,6 +73,10 @@ export function TopUrl() {
                   <TableHead className="w-[100px] text-center font-semibold text-gray-700">
                     Clicks
                   </TableHead>
+                  <TableHead className="w-[140px] text-center font-semibold text-gray-700">
+                    Created At
+                  </TableHead>{" "}
+                  {/* เพิ่มคอลัมน์นี้ */}
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -114,9 +118,18 @@ export function TopUrl() {
                         {data.clicks}
                       </span>
                     </TableCell>
+                    <TableCell className="text-center text-gray-600">
+                      {new Date(data.createdAt).toLocaleDateString("en-GB", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      })}
+                      {/* แปลงวันที่ให้อ่านง่าย */}
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
+
               <TableFooter className="sticky bottom-0 bg-white z-10">
                 <TableRow>
                   <TableCell colSpan={4} className="text-sm text-gray-500 py-3">
