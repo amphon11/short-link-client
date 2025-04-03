@@ -1,74 +1,105 @@
-# Welcome to React Router!
+# URL Shortener Application
 
-A modern, production-ready template for building full-stack React applications using React Router.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+## 📌 Overview
+  - URL Shortener Application เป็นเครื่องมือสำหรับย่อ URL ที่พัฒนาด้วย TypeScript, Node.js, Express, และ Prisma ช่วยให้ผู้ใช้สามารถ:
+  - ย่อ URL ยาว ๆ ให้สั้นลง
+  - ติดตามจำนวนคลิกของผู้ใช้
+  - สร้าง QR Code สำฟรับเข้าชม URL
+  - เหมาะสำหรับการแชร์ลิงก์บนโซเชียลมีเดียและการตลาดดิจิทัล ✨
 
-## Features
+  - 
+## 🚀 Features
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+1. **🔗 URL Shortening**
+   - แปลง URL ยาวให้เป็นรหัสสั้น (short code) โดยใช้การเข้ารหัส Base-64
+   - รองรับการสร้าง Short URL ซ้ำสำหรับ URL เดิมที่มีอยู่แล้ว
+   - คืนค่า URL สั้นในรูปแบบ `https://your-domain.com/<shortCode>`
+   - 
+2. **📊 QR Code**
+   - สร้าง QR Code สำหรับ รหัสสั้น (short code)
+   - ติดตามจำนวนการเข้าชมของผู้ใช้
+   - เข้าชม URL ผ่านทาง QR Code
 
-## Getting Started
+3. **📊 Click Tracking**
+   - บันทึกจำนวนครั้งที่ URL สั้นถูกคลิก
+     
+4. **📈 Analytics**
+   - **Shorting URL**: แสดง Short URl แสดง ตัวอย่าง URL และ QR Code
+   - **URL History**: แสดงรายการ URL ทั้งหมดที่เคยสร้าง จำนวนคลิก และวันที่สร้าง
 
-### Installation
+5. **⚡ Scalability**
+   - ใช้ Prisma ORM ร่วมกับ PostgreSQL เพื่อจัดการฐานข้อมูลแบบ scalable
+   - รองรับการ deploy บน platform เช่น Render
 
-Install the dependencies:
+## 🛠 Prerequisites
 
+ก่อนติดตั้ง คุณต้องมีเครื่องมือและข้อมูลต่อไปนี้:
+
+- **Node.js**: v18 หรือสูงกว่า
+- **npm**: v9 หรือสูงกว่า
+- **PostgreSQL**: ฐานข้อมูลสำหรับเก็บข้อมูล URL, Click วันที่สร้าง
+- **Render Account**: ถ้าต้องการ deploy ออนไลน์
+
+
+## 🔧 Installation (Local Development)
+
+### 1️⃣ Clone Repository
+```bash
+git clone https://github.com/your-username/short-link.git
+cd url-shortener
+```
+### 2️⃣ Install Dependencies
 ```bash
 npm install
 ```
-
-### Development
-
-Start the development server with HMR:
-
+### 3️⃣ Setup Environment Variables
 ```bash
-npm run dev
+DATABASE_URL="postgresql://<username>:<password>@<host>:<port>/<dbname>?schema=public"
+BASE_URL="your_server_domain"
+CLIENT_URL="your_client_domain"
+PORT=8080
+```
+📌 เปลี่ยนค่า <username>, <password>, <host>, <port>, <dbname> ตามฐานข้อมูลของคุณ
+
+### 4️⃣ Setup Database
+```bash
+npx prisma migrate dev --name init
+```
+🔹 คำสั่งนี้จะสร้างตาราง ShortUrl ตาม schema ใน prisma/schema.prisma
+
+### 5️⃣ Start the Application
+```bash
+npm start
 ```
 
-Your application will be available at `http://localhost:5173`.
+🔹 แอปจะรันที่ http://localhost:8080
+## 🎯 API Endpoints
 
-## Building for Production
+Install the dependencies:
 
-Create a production build:
-
+✂️ Shorten URL
 ```bash
-npm run build
+POST http://localhost:8080/shorten
 ```
-
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
-
+Body:
 ```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
+{
+  "originalUrl": "https://example.com"
+}
 ```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
+🔄 Redirect
+```bash
+GET http://localhost:8080/<shortCode>
+```
+🌍 Location Stats
+```bash
+GET http://localhost:8080/location-stats?shortCode=<shortCode>
+```
+📜 URL History
+```bash
+GET http://localhost:8080/history
+```
 
 ```
 ├── package.json
