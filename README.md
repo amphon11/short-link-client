@@ -4,7 +4,7 @@
    <img src="https://res.cloudinary.com/dmqhlua4l/image/upload/v1743657289/dog_ww5kk7.jpg">
 </div>
 
-URL Shortener Application เป็นเครื่องมือสำหรับย่อ URL ที่พัฒนาด้วย **TypeScript, Node.js, Express และ Prisma**  
+URL Shortener Application เป็นเครื่องมือสำหรับย่อ URL ที่พัฒนาด้วย **React ,TypeScript, Node.js, Express และ Prisma**  
 ช่วยให้ผู้ใช้สามารถ:
 
 - ✂️ **ย่อ URL** ยาว ๆ ให้สั้นลง
